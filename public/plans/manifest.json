@@ -1,0 +1,74 @@
+[
+  {
+    "slug": "sonic-premier",
+    "name": "Sonic Premier",
+    "tagline": "Plan Chevrolet — Sonic Premier",
+    "priceFrom": "$ 39.745.900",
+    "priceNetSuggested": "$ 32.847.851",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/sonic-premier.jpg",
+    "order": 0
+  },
+  {
+    "slug": "onix-lt-turbo-mt",
+    "name": "Onix LT Turbo MT",
+    "tagline": "Plan Chevrolet — Onix LT Turbo MT",
+    "priceFrom": "$ 32.782.900",
+    "priceNetSuggested": "$ 27.093.306",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/onix-lt-turbo-mt.jpg",
+    "order": 1
+  },
+  {
+    "slug": "onix-plus-lt-mt-turbo",
+    "name": "Onix Plus LT MT Turbo",
+    "tagline": "Plan Chevrolet — Onix Plus LT MT Turbo",
+    "priceFrom": "$ 32.782.900",
+    "priceNetSuggested": "$ 27.093.306",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/onix-plus-lt-mt-turbo.jpg",
+    "order": 2
+  },
+  {
+    "slug": "tracker-lt-at-turbo",
+    "name": "Tracker LT AT Turbo",
+    "tagline": "Plan Chevrolet — Tracker LT AT Turbo",
+    "priceFrom": "$ 40.945.900",
+    "priceNetSuggested": "$ 33.839.587",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/tracker-lt-at-turbo.jpg",
+    "order": 3
+  },
+  {
+    "slug": "montana-lt-at",
+    "name": "Montana LT AT",
+    "tagline": "Plan Chevrolet — Montana LT AT",
+    "priceFrom": "$ 41.254.900",
+    "priceNetSuggested": "$ 37.334.751",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/montana-lt-at.jpg",
+    "order": 4
+  },
+  {
+    "slug": "s10-wt",
+    "name": "S10 WT",
+    "tagline": "Plan Chevrolet — S10 WT",
+    "priceFrom": "$ 49.818.900",
+    "priceNetSuggested": "$ 38.985.430",
+    "features": [],
+    "sourceUrl": "https://www.chevrolet.com.ar/plan-chevrolet",
+    "active": true,
+    "imagePath": "/plans/s10-wt.jpg",
+    "order": 5
+  }
+]
