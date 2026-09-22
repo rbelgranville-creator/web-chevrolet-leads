@@ -31,7 +31,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **SQLite** local (`better-sqlite3`) en `data/app.db` — **sin MongoDB**
 - **Auth.js (NextAuth)** credentials para `/admin`
 - Runtime **Node** (nunca Edge) en rutas/DB
-- Middleware usa solo `auth.config.ts` (sin DB)
+- Auth de `/admin` vía `proxy.ts` (Next.js 16; antes `middleware.ts`) + `auth.config.ts` (sin DB)
 - **Deploy:** DigitalOcean App Platform (buildpack Node, sin Docker). En App Platform necesitás disco persistente para el `.db` o migrar después a una DB gestionada.
 
 ## Secretos (`.env.local`)

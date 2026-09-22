@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getActivePlans } from "@/lib/plans";
 import LeadForm from "@/components/LeadForm";
 import PlansGrid from "@/components/PlansGrid";
@@ -13,9 +14,9 @@ export default async function HomePage() {
     <main className="flex flex-1 flex-col bg-background text-foreground">
       <header className="page-gutter absolute inset-x-0 top-0 z-20 border-b border-transparent bg-gradient-to-b from-black/55 to-transparent">
         <div className="container-chevy flex items-center justify-between py-4 md:py-5">
-          <a href="/" className="text-lg font-bold tracking-tight text-inverse">
+          <Link href="/" className="text-lg font-bold tracking-tight text-inverse">
             Chevrolet
-          </a>
+          </Link>
           <nav className="flex items-center gap-5 text-sm font-bold text-inverse">
             <a href="#planes" className="hover:underline">
               Modelos
@@ -34,6 +35,8 @@ export default async function HomePage() {
             alt="Chevrolet 0 km con Plan Chevrolet"
             fill
             priority
+            loading="eager"
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover object-center"
           />
@@ -124,9 +127,9 @@ export default async function HomePage() {
       <footer className="page-gutter border-t border-border bg-subtle py-8 text-sm text-muted">
         <div className="container-chevy flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <span>Plan Chevrolet — captación de leads</span>
-          <a href="/admin" className="font-bold text-primary hover:underline">
+          <Link href="/admin" className="font-bold text-primary hover:underline">
             Acceso admin
-          </a>
+          </Link>
         </div>
       </footer>
     </main>

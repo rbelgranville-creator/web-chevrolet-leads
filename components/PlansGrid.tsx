@@ -28,6 +28,7 @@ export default function PlansGrid({ plans }: Props) {
                 src={plan.imagePath}
                 alt={plan.name}
                 fill
+                loading="lazy"
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 className="object-cover transition duration-300 group-hover:scale-[1.02] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
               />

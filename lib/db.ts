@@ -9,7 +9,6 @@ function resolveDbPath() {
 }
 
 declare global {
-  // eslint-disable-next-line no-var
   var sqliteDb: Database.Database | undefined;
 }
 
