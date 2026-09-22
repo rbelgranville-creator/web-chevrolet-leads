@@ -7,7 +7,7 @@ Webapp rápida para captar leads de Plan Chevrolet, con panel admin.
 - Node.js 20+
 - npm
 
-**No hace falta MongoDB.** La base es **SQLite** (archivo local en `data/app.db`).
+**No hace falta MongoDB.** La base es **SQLite** vía `@libsql/client` (archivo local en desarrollo; **Turso** en Vercel).
 
 ## Setup
 
@@ -53,15 +53,27 @@ npm run test:all  # ambos
 |---------|-------------|
 | `npm run dev` | Desarrollo |
 | `npm run build` / `npm start` | Producción |
-| `npm run scrape:plans` | Planes/fotos + upsert SQLite |
+| `npm run scrape:plans` | Planes/fotos + upsert SQLite/Turso |
 | `npm run seed:admin` | Crea/actualiza admin |
 
-## Deploy (DigitalOcean App Platform)
+## Deploy (Vercel + Turso)
 
-Sin Docker (buildpack Node).  
-Build: `npm run build` · Start: `npm start`.
+1. Creá una base en [Turso](https://turso.tech) y copiá `TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`.
+2. En Vercel, importá el repo GitHub `web-chevrolet-leads`.
+3. Branch de producción: **`main`**. Previews: **`dev`** (y otras ramas).
+4. Environment Variables (Production + Preview):
 
-**Nota:** SQLite vive en un archivo. En App Platform el filesystem puede ser efímero: para producción real conviene un volumen persistente o migrar después a una DB gestionada. Para desarrollo local, SQLite alcanza.
+| Variable | Valor |
+|----------|--------|
+| `TURSO_DATABASE_URL` | URL de Turso |
+| `TURSO_AUTH_TOKEN` | Token de Turso |
+| `AUTH_SECRET` | Secreto largo (mismo que `NEXTAUTH_SECRET`) |
+| `NEXTAUTH_SECRET` | Igual que `AUTH_SECRET` |
+| `NEXTAUTH_URL` | URL del deployment (p.ej. `https://….vercel.app`) |
+
+5. Tras el primer deploy, corré seed/scrape apuntando a Turso (con esas vars en el entorno) o insertá datos desde local con `TURSO_*` en `.env.local`.
+
+Framework preset: Next.js. Build: `npm run build`.
 
 ## Branding
 

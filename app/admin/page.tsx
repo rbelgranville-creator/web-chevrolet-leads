@@ -19,7 +19,7 @@ export default async function AdminPage({ searchParams }: Props) {
 
   const { q } = await searchParams;
   const query = (q || "").trim();
-  const leads = listLeads(query);
+  const leads = await listLeads(query);
 
   const rows = leads.map((lead) => ({
     id: String(lead.id),

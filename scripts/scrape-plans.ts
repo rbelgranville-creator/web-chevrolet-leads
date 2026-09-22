@@ -252,7 +252,7 @@ async function scrape() {
   console.log(`Manifest: ${MANIFEST_PATH}`);
 
   for (const plan of plans) {
-    upsertPlan({
+    await upsertPlan({
       slug: plan.slug,
       name: plan.name,
       tagline: plan.tagline,

@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     }
 
     let planName = "";
-    const plan = findActivePlanBySlug(parsed.data.planSlug);
+    const plan = await findActivePlanBySlug(parsed.data.planSlug);
 
     if (plan) {
       planName = plan.name;
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       planName = local.name;
     }
 
-    createLead({
+    await createLead({
       fullName: parsed.data.fullName,
       email: parsed.data.email,
       planSlug: parsed.data.planSlug,

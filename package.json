@@ -15,8 +15,8 @@
     "test:all": "npm run test && npm run test:e2e"
   },
   "dependencies": {
+    "@libsql/client": "^0.18.0",
     "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^13.0.3",
     "cheerio": "^1.2.0",
     "next": "16.3.5",
     "next-auth": "^5.0.0-beta.32",
@@ -28,7 +28,6 @@
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@types/bcryptjs": "^2.4.6",
-    "@types/better-sqlite3": "^9.6.0",
     "@types/cheerio": "^0.22.35",
     "@types/node": "^22.20.4",
     "@types/react": "^19",

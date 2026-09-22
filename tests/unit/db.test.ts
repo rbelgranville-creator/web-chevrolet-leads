@@ -12,15 +12,17 @@ import {
   upsertPlan,
 } from "@/lib/db";
 
-describe("sqlite db", () => {
+describe("libsql db", () => {
   beforeEach(() => {
     resetDbConnection();
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "chevy-db-"));
     process.env.DATABASE_PATH = path.join(dir, "test.db");
+    delete process.env.TURSO_DATABASE_URL;
+    delete process.env.TURSO_AUTH_TOKEN;
   });
 
-  it("upsert plan y lo encuentra activo", () => {
-    upsertPlan({
+  it("upsert plan y lo encuentra activo", async () => {
+    await upsertPlan({
       slug: "tracker-lt",
       name: "Tracker LT",
       tagline: "Plan Chevrolet",
@@ -33,43 +35,43 @@ describe("sqlite db", () => {
       order: 1,
     });
 
-    const plan = findActivePlanBySlug("tracker-lt");
+    const plan = await findActivePlanBySlug("tracker-lt");
     expect(plan?.name).toBe("Tracker LT");
     expect(JSON.parse(plan!.features_json)).toEqual(["ABS"]);
   });
 
-  it("crea leads y lista con filtro", () => {
-    createLead({
+  it("crea leads y lista con filtro", async () => {
+    await createLead({
       fullName: "Ana Gómez",
       email: "ana@example.com",
       planSlug: "onix",
       planName: "Onix",
     });
-    createLead({
+    await createLead({
       fullName: "Pedro López",
       email: "pedro@example.com",
       planSlug: "s10",
       planName: "S10 WT",
     });
 
-    expect(listLeads().length).toBe(2);
-    expect(listLeads("ana")[0]?.email).toBe("ana@example.com");
-    expect(listLeads("S10")[0]?.plan_name).toBe("S10 WT");
+    expect((await listLeads()).length).toBe(2);
+    expect((await listLeads("ana"))[0]?.email).toBe("ana@example.com");
+    expect((await listLeads("S10"))[0]?.plan_name).toBe("S10 WT");
   });
 
-  it("upsert admin por email", () => {
-    upsertAdmin({
+  it("upsert admin por email", async () => {
+    await upsertAdmin({
       email: "admin@test.com",
       passwordHash: "hash1",
       name: "Admin",
     });
-    upsertAdmin({
+    await upsertAdmin({
       email: "admin@test.com",
       passwordHash: "hash2",
       name: "Admin 2",
     });
 
-    const admin = findAdminByEmail("admin@test.com");
+    const admin = await findAdminByEmail("admin@test.com");
     expect(admin?.password_hash).toBe("hash2");
     expect(admin?.name).toBe("Admin 2");
   });

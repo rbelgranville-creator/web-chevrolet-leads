@@ -15,7 +15,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 1. **Siempre planificá antes de meter código.**
 2. **Stack según el producto:** landing SEO + form leads + admin liviano.
 3. **Usá npm** y librerías conocidas.
-4. **Nunca hardcodees secretos** — solo `.env.local` / secretos de App Platform.
+4. **Nunca hardcodees secretos** — solo `.env.local` / Environment Variables de Vercel (y tokens de Turso).
 5. UI: skill `frontend-design` + Tailwind.
 6. Docs: skill `context7`.
 7. Branding: [`DESIGN.md`](./DESIGN.md) manda sobre preferencias genéricas.
@@ -28,19 +28,21 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Stack fijado
 
 - **Next.js** (App Router) + TypeScript + Tailwind + **npm**
-- **SQLite** local (`better-sqlite3`) en `data/app.db` — **sin MongoDB**
+- **SQLite vía `@libsql/client`**: archivo local (`DATABASE_PATH`, default `./data/app.db`) en desarrollo; **Turso** (`TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`) en Vercel
 - **Auth.js (NextAuth)** credentials para `/admin`
 - Runtime **Node** (nunca Edge) en rutas/DB
 - Auth de `/admin` vía `proxy.ts` (Next.js 16; antes `middleware.ts`) + `auth.config.ts` (sin DB)
-- **Deploy:** DigitalOcean App Platform (buildpack Node, sin Docker). En App Platform necesitás disco persistente para el `.db` o migrar después a una DB gestionada.
+- **Deploy:** **Vercel** (GitHub). Producción = `main`; previews = `dev` y demás ramas. Sin DigitalOcean App Platform.
 
-## Secretos (`.env.local`)
+## Secretos (`.env.local` / Vercel)
 
 | Variable | Uso |
 |----------|-----|
-| `DATABASE_PATH` | Ruta al archivo SQLite (default `./data/app.db`) |
+| `DATABASE_PATH` | Archivo SQLite local (default `./data/app.db`); se ignora si hay Turso |
+| `TURSO_DATABASE_URL` | URL libsql de Turso (prod / preview) |
+| `TURSO_AUTH_TOKEN` | Token de Turso |
 | `AUTH_SECRET` / `NEXTAUTH_SECRET` | Mismo valor; firman la sesión admin |
-| `NEXTAUTH_URL` | `http://localhost:3000` en local |
+| `NEXTAUTH_URL` | `http://localhost:3000` en local; URL de Vercel en prod |
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Credenciales para `npm run seed:admin` |
 | `ADMIN_NAME` | Nombre visible del admin |
 

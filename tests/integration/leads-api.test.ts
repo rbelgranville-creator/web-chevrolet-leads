@@ -10,12 +10,14 @@ import {
 } from "@/lib/db";
 
 describe("POST /api/leads", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     resetDbConnection();
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "chevy-api-"));
     process.env.DATABASE_PATH = path.join(dir, "test.db");
+    delete process.env.TURSO_DATABASE_URL;
+    delete process.env.TURSO_AUTH_TOKEN;
 
-    upsertPlan({
+    await upsertPlan({
       slug: "sonic-premier",
       name: "Sonic Premier",
       tagline: "Plan",
@@ -45,7 +47,7 @@ describe("POST /api/leads", () => {
     const json = await res.json();
     expect(json.ok).toBe(true);
 
-    const leads = listLeads("maria");
+    const leads = await listLeads("maria");
     expect(leads).toHaveLength(1);
     expect(leads[0].plan_name).toBe("Sonic Premier");
   });
@@ -79,6 +81,6 @@ describe("POST /api/leads", () => {
 
     const res = await POST(req);
     expect(res.status).toBe(200);
-    expect(listLeads().length).toBe(0);
+    expect((await listLeads()).length).toBe(0);
   });
 });

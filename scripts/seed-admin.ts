@@ -20,7 +20,7 @@ async function seedAdmin() {
   }
 
   const passwordHash = await bcrypt.hash(password, 12);
-  upsertAdmin({ email, passwordHash, name });
+  await upsertAdmin({ email, passwordHash, name });
 
   console.log(`Admin listo: ${email}`);
   process.exit(0);

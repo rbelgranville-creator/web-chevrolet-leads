@@ -23,7 +23,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return null;
         }
 
-        const admin = findAdminByEmail(email);
+        const admin = await findAdminByEmail(email);
         if (!admin) {
           return null;
         }

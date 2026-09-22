@@ -26,7 +26,7 @@ async function fromManifest(): Promise<PlanView[]> {
 
 export async function getActivePlans(): Promise<PlanView[]> {
   try {
-    const plans = listActivePlans();
+    const plans = await listActivePlans();
     if (!plans.length) {
       return fromManifest();
     }
