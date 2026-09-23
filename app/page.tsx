@@ -126,7 +126,7 @@ export default async function HomePage() {
 
       <footer className="page-gutter border-t border-border bg-subtle py-8 text-sm text-muted">
         <div className="container-chevy flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <span>Plan Chevrolet — captación de leads</span>
+          <span>Plan Chevrolet</span>
           <Link href="/admin" className="font-bold text-primary hover:underline">
             Acceso admin
           </Link>
